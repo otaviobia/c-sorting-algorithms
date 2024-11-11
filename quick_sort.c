@@ -1,8 +1,10 @@
+
 #include <stdio.h> 
 
 void quick_sort(int v[], int inicio, int fim) {
     
     if(inicio < fim) {
+        //TODO mudar a seleção do pivô 
         int pivo = v[(inicio+fim)/2]; 
         int i, j; 
         int tmp; 
