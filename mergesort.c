@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-void merge_sort(int *v, int inicio, int fim) {
-    if (inicio < fim) {
-        int meio = inicio + (fim - inicio) / 2;
-        merge_sort(v, inicio, meio);
-        merge_sort(v, meio + 1, fim);
-        merge(v, inicio, meio, fim);
-    }
-}
+unsigned long long comparacoes = 0;
+unsigned long long movimentos = 0;
 
 void merge(int *v, int inicio, int meio, int fim) {
     int i, j, k;
@@ -19,15 +14,25 @@ void merge(int *v, int inicio, int meio, int fim) {
     int *right = (int*) malloc(n2 * sizeof(int));
 
     for (i = 0; i < n1; i++)
+    {
+        comparacoes++;
+        movimentos++;
         left[i] = v[inicio + i];
+    }
     for (j = 0; j < n2; j++)
+    {
+        comparacoes++;
+        movimentos++;
         right[j] = v[meio + 1 + j];
+    }
 
     i = 0;
     j = 0;
     k = inicio;
 
     while (i < n1 && j < n2) {
+        comparacoes+=3;
+        movimentos++;
         if (left[i] <= right[j]) {
             v[k] = left[i];
             i++;
@@ -37,21 +42,38 @@ void merge(int *v, int inicio, int meio, int fim) {
         }
         k++;
     }
+    comparacoes+=2;
 
     while (i < n1) {
+        comparacoes++;
+        movimentos++;
         v[k] = left[i];
         i++;
         k++;
     }
+    comparacoes++;
 
     while (j < n2) {
+        comparacoes++;
+        movimentos++;
         v[k] = right[j];
         j++;
         k++;
     }
+    comparacoes++;
 
     free(left);
     free(right);
+}
+
+void merge_sort(int *v, int inicio, int fim) {
+    if (inicio < fim) {
+        comparacoes++;
+        int meio = inicio + (fim - inicio) / 2;
+        merge_sort(v, inicio, meio);
+        merge_sort(v, meio + 1, fim);
+        merge(v, inicio, meio, fim);
+    }
 }
 
 void print_array(int *v, int size) {
@@ -61,11 +83,21 @@ void print_array(int *v, int size) {
 }
 
 int main(void) {
-    int v[] = {38, 27, 43, 3, 9, 82, 10};
-    int size = sizeof(v) / sizeof(v[0]);
+    int tam;
+    scanf("%d", &tam);
 
-    merge_sort(v, 0, size - 1);
-    print_array(v, size);
+    int v[tam];
+    for(int i = 0; i<tam; i++)
+        scanf("%d", &v[i]);
+
+    clock_t start = clock();
+    merge_sort(v, 0, tam - 1); 
+    clock_t end = clock();
+
+    print_array(v, tam);
+
+    printf("\nComparacoes: %llu\nMovimentos: %llu\n", comparacoes, movimentos);
+    printf("Tempo: %.6fs\n", (double)(end - start) / CLOCKS_PER_SEC);
 
     return 0;
 }

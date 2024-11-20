@@ -1,40 +1,48 @@
 #include <stdio.h>
+#include <time.h>
+
+unsigned long long comparacoes = 0;
+unsigned long long movimentos = 0;
 
 int *selectionSort(int v[], int tam) {
     int tmp, menor; 
 
-
     for(int i = 0; i<tam-1; i++) {
+        comparacoes++;
         menor = i; 
         for(int j =i+1; j<tam; j++) {
+            comparacoes+=2;
             if(v[j] < v[menor]) 
                 menor = j;  
-        
         }
 
         tmp = v[i]; 
         v[i] = v[menor]; 
         v[menor] = tmp;
-
-
+        movimentos++;
     }
 
     return v; 
 }
 
-
-
 int main(void) {
-    int v[] = {3,1, 8,4, 7}; 
 
-    int *v_sorted = selectionSort(v, 5); 
+    int tam;
+    scanf("%d", &tam);
 
-    for(int i =0; i<5; i++) 
+    int v[tam];
+    for(int i = 0; i<tam; i++)
+        scanf("%d", &v[i]);
+
+    clock_t start = clock();
+    selectionSort(v, tam);
+    clock_t end = clock();
+
+    for(int i = 0; i<tam; i++) 
         printf("%d ", v[i]); 
 
-
-
-
+    printf("\nComparacoes: %llu\nMovimentos: %llu\n", comparacoes, movimentos);
+    printf("Tempo: %.6fs\n", (double)(end - start) / CLOCKS_PER_SEC);
 
     return 0; 
 }
