@@ -16,10 +16,15 @@ int *selectionSort(int v[], int tam) {
             }
         }
 
-        tmp = v[i]; 
-        v[i] = v[menor]; 
-        v[menor] = tmp;
-        movimentos++;
+
+        if(menor != i) {
+            tmp = v[i]; 
+            v[i] = v[menor]; 
+            v[menor] = tmp;
+            movimentos++;
+
+        }
+        
     }
 
     return v; 
