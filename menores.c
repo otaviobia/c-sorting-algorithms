@@ -33,35 +33,26 @@ void contagem_de_menores(int v[], int tam) {
     int B[tam]; 
 
     for(int i = 0; i<tam; i++) {
-        comparacoes++;
         A[i] = 0; 
     }
-    comparacoes++;
 
     for(int i = 1; i<tam; i++) {
-        comparacoes++;
         for(int j = i-1; j>=0; j--) {
-            comparacoes+=2;
+            comparacoes++;
             if(v[i] < v[j]) {
                 A[j]++; 
             }else 
                 A[i]++; 
         }
-        comparacoes++;
     }
-    comparacoes++;
 
     for(int i = 0; i<tam; i++) {
-        comparacoes++;
         B[A[i]] = v[i];
         movimentos++;
     }
-    comparacoes++;
 
     for (int i=0; i<tam; i++) {
-        comparacoes++;
         v[i]=B[i];
         movimentos++;
     }
-    comparacoes++;
 }

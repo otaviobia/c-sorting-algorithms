@@ -9,11 +9,13 @@ void rearranjar_heap(int v[], int i, int tam_heap) {
     esq = 2*i + 1; 
     dir = 2*i + 2; 
 
+    comparacoes++; 
     if(esq < tam_heap && v[esq] > v[i]) 
         maior = esq; 
     else 
         maior = i; 
     
+    comparacoes++; 
     if(dir < tam_heap && v[dir] > v[maior]) 
         maior = dir; 
 
@@ -31,10 +33,8 @@ void rearranjar_heap(int v[], int i, int tam_heap) {
 void construir_heap(int v[], int n) {
     int i; 
     for(i = n/2 - 1; i >= 0; i--) {
-        comparacoes++;
         rearranjar_heap(v, i, n); 
     }
-    comparacoes++;
 }
 
 void heapsort(int v[], int n) {
@@ -43,7 +43,6 @@ void heapsort(int v[], int n) {
     tam_heap = n; 
 
     for(int i = n-1; i > 0; i--) {
-        comparacoes++;
         movimentos++;
         tmp = v[0]; 
         v[0] = v[i]; 
@@ -51,7 +50,6 @@ void heapsort(int v[], int n) {
         tam_heap--; 
         rearranjar_heap(v, 0, tam_heap); 
     }
-    comparacoes++;
 }
 
 int main(void) {
