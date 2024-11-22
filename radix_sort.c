@@ -62,18 +62,14 @@ void radix_sort(int *array, int n) {
     int max = array[0];
 
     for (int i = 1; i < n; i++) {
-        comparacoes+=2;
         if (array[i] > max) {
-            movimentos++;
             max = array[i];
         }
     }
 
     for (int exp = 1; max / exp > 0; exp *= 10) {
-        comparacoes++;
         count_sort(array, n, exp);
     }
-    comparacoes+=2;
 }
 
 void print_output(int *array, int n) {
