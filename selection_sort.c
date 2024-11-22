@@ -9,8 +9,8 @@ int *selectionSort(int v[], int tam) {
 
     for(int i = 0; i<tam-1; i++) {
         menor = i; 
-        comparacoes++;
         for(int j =i+1; j<tam; j++) {
+            comparacoes++;
             if(v[j] < v[menor]) {
                 menor = j; 
             }
