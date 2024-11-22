@@ -40,7 +40,6 @@ int mediana_de_3(int v[], int inicio, int fim) {
 
 void quick_sort(int v[], int inicio, int fim) {
     
-    comparacoes++;
     if (inicio < fim) {
         int pivo = v[mediana_de_3(v, inicio, fim)]; 
         int i, j; 
@@ -50,7 +49,6 @@ void quick_sort(int v[], int inicio, int fim) {
         j = fim; 
 
         do {
-            comparacoes++;
             while(v[i] < pivo) 
             {
                 comparacoes++;
@@ -61,7 +59,6 @@ void quick_sort(int v[], int inicio, int fim) {
                 comparacoes++;
                 j--; 
             }
-            comparacoes+=2;
 
             if (j >= i) {
                 tmp = v[i]; 
@@ -71,9 +68,7 @@ void quick_sort(int v[], int inicio, int fim) {
                 i++; 
                 j--; 
             }
-            comparacoes++;
         } while(i<j); 
-        comparacoes++;
 
         quick_sort(v, inicio, j); 
         quick_sort(v, i, fim); 

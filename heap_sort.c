@@ -27,7 +27,6 @@ void rearranjar_heap(int v[], int i, int tam_heap) {
         rearranjar_heap(v, maior, tam_heap); 
     }
 
-    comparacoes+=5;
 }
 
 void construir_heap(int v[], int n) {
