@@ -34,27 +34,22 @@ void count_sort(int *array, int n, int exp) {
     int *output = (int*) malloc(n * sizeof(int));
     int count[10] = {0};
 
-    comparacoes+=n;
     for (int i = 0; i < n; i++) {
         int index = (array[i] / exp) % 10;
         count[index]++;
     }
 
-    comparacoes+=9;
     for (int i = 1; i < 10; i++) {
         count[i] += count[i - 1];
     }
 
     for (int i = n - 1; i >= 0; i--) {
-        comparacoes++;
         int index = (array[i] / exp) % 10;
         output[count[index] - 1] = array[i];
         movimentos++;
         count[index]--;
     }
-    comparacoes++;
 
-    comparacoes+=n;
     for (int i = 0; i < n; i++) {
         movimentos++;
         array[i] = output[i];

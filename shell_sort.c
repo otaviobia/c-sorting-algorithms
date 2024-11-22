@@ -12,6 +12,7 @@ void shell_sort(int *v, int n) {
             for (j = i; j >= gap && v[j - gap] > temp; j -= gap) {
                 v[j] = v[j - gap];
                 comparacoes++; 
+                movimentos++; 
             }
             v[j] = temp;
             movimentos++;  
