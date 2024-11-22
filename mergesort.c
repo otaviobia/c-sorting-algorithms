@@ -15,13 +15,11 @@ void merge(int *v, int inicio, int meio, int fim) {
 
     for (i = 0; i < n1; i++)
     {
-        comparacoes++;
         movimentos++;
         left[i] = v[inicio + i];
     }
     for (j = 0; j < n2; j++)
     {
-        comparacoes++;
         movimentos++;
         right[j] = v[meio + 1 + j];
     }
@@ -31,21 +29,21 @@ void merge(int *v, int inicio, int meio, int fim) {
     k = inicio;
 
     while (i < n1 && j < n2) {
-        comparacoes+=3;
-        movimentos++;
+        comparacoes++;
         if (left[i] <= right[j]) {
+            movimentos++; 
             v[k] = left[i];
             i++;
         } else {
+            movimentos++; 
             v[k] = right[j];
             j++;
         }
         k++;
     }
-    comparacoes+=2;
+ 
 
     while (i < n1) {
-        comparacoes++;
         movimentos++;
         v[k] = left[i];
         i++;
@@ -54,13 +52,11 @@ void merge(int *v, int inicio, int meio, int fim) {
     comparacoes++;
 
     while (j < n2) {
-        comparacoes++;
         movimentos++;
         v[k] = right[j];
         j++;
         k++;
     }
-    comparacoes++;
 
     free(left);
     free(right);

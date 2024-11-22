@@ -8,7 +8,6 @@ void insertion_sort(int v[], int tam) {
     int tmp, j;
 
     for (int i = 1; i < tam; i++) {
-        comparacoes++;
         tmp = v[i];
         j = i - 1;
         
@@ -19,8 +18,9 @@ void insertion_sort(int v[], int tam) {
             v[j + 1] = v[j];
             j--;
         }
-        comparacoes++;
+      
         // Inserindo o elemento temporário na posição correta
+        comparacoes++;
         v[j + 1] = tmp;
     }
 }
