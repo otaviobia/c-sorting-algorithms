@@ -9,10 +9,6 @@
 #include <string.h>
 #include <time.h>
 
-// Valor mínimo e máximo de um elemento gerado aleatoriamente
-#define RAND_MIN 1
-#define RAND_MAX 1000
-
 FILE *criar_arquivo(char* path) {
 	FILE *ct = fopen(path, "w");
 	if (ct == NULL) {
@@ -24,6 +20,10 @@ FILE *criar_arquivo(char* path) {
 }
 
 void escrever_casos(FILE* ct, int tamanho, char* tipo) {
+	// Valor mínimo e máximo da geração aleatória de chaves
+	int valor_min = 1;
+	int valor_max = 1000;
+
 	// Primeira linha é a quantidade de elementos gerado
 	fprintf(ct, "%d\n", tamanho);
 
@@ -31,7 +31,7 @@ void escrever_casos(FILE* ct, int tamanho, char* tipo) {
 	if (!strcmp(tipo, "random")) {
 		srand(time(NULL));
 		for (int i = 1; i <= tamanho; i++) {
-			int valor_aleatorio = rand() % (RAND_MIN - RAND_MAX + 1) + RAND_MIN;
+			int valor_aleatorio = ((double)rand() / RAND_MAX) * (valor_max - valor_min) + valor_min;
 			if (i != tamanho)
 				fprintf(ct, "%d\n", valor_aleatorio);
 			else
