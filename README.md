@@ -1,5 +1,5 @@
 # Algoritmos de Ordenação em C
-Implementação de 9 algoritmos de ordenação em C.
+Implementação de 10 algoritmos de ordenação em C.
 
 ## Instruções de Compilação e Execução dos Algoritmos de Ordenação:
 
