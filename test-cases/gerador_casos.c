@@ -9,6 +9,8 @@
 #include <string.h>
 #include <time.h>
 
+/* criar_arquivo recebe o caminho do arquivo a ser criado e retorna
+um ponteiro para o arquivo caso a operação seja bem sucedida */
 FILE *criar_arquivo(char* path) {
 	FILE *ct = fopen(path, "w");
 	if (ct == NULL) {
@@ -19,6 +21,8 @@ FILE *criar_arquivo(char* path) {
 	return ct;
 }
 
+/* escrever_casos recebe um ponteiro para arquivo de texto, o tamanho do vetor e o tipo dos elementos,
+escreve no arquivo em cada linha a chave de um elemento com a primeira linha sendo o tamanho*/
 void escrever_casos(FILE* ct, int tamanho, char* tipo) {
 	// Valor mínimo e máximo da geração aleatória de chaves
 	int valor_min = 1;
